@@ -1,0 +1,105 @@
+[27-Sep-2021 07:06:06 America/Bogota] conexion exitosa
+[27-Sep-2021 19:52:49 America/Bogota] conexion exitosa
+[27-Sep-2021 19:59:03 America/Bogota] PHP Warning:  Undefined array key "Authorization" in C:\xampp\htdocs\api\src\Config\Security.php on line 55
+[27-Sep-2021 19:59:03 America/Bogota] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\api\src\Config\Security.php on line 56
+[27-Sep-2021 19:59:03 America/Bogota] Token invalido o expiro
+[27-Sep-2021 19:59:06 America/Bogota] PHP Warning:  Undefined array key "Authorization" in C:\xampp\htdocs\api\src\Config\Security.php on line 55
+[27-Sep-2021 19:59:06 America/Bogota] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\api\src\Config\Security.php on line 56
+[27-Sep-2021 19:59:06 America/Bogota] Token invalido o expiro
+[27-Sep-2021 19:59:31 America/Bogota] PHP Warning:  Undefined array key "Authorization" in C:\xampp\htdocs\api\src\Config\Security.php on line 55
+[27-Sep-2021 19:59:31 America/Bogota] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\api\src\Config\Security.php on line 56
+[27-Sep-2021 19:59:31 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:00:38 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:00:39 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:00:41 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:00:41 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:01:00 America/Bogota] conexion exitosa
+[27-Sep-2021 20:01:30 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:01:31 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:01:32 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:01:33 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:01:35 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:01:52 America/Bogota] conexion exitosa
+[27-Sep-2021 20:03:12 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:13 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:14 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:14 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:14 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:14 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:15 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:15 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:15 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:15 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:16 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:16 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:17 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:03:17 America/Bogota] Token invalido o expiro
+[27-Sep-2021 20:07:39 America/Bogota] PHP Fatal error:  Uncaught TypeError: strtoupper(): Argument #1 ($string) must be of type string, array given in C:\xampp\htdocs\api\src\Routes\user.php:17
+Stack trace:
+#0 C:\xampp\htdocs\api\src\Routes\user.php(17): strtoupper(Array)
+#1 C:\xampp\htdocs\api\public\index.php(22): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\api\src\Routes\user.php on line 17
+[27-Sep-2021 20:07:43 America/Bogota] PHP Fatal error:  Uncaught TypeError: strtoupper(): Argument #1 ($string) must be of type string, array given in C:\xampp\htdocs\api\src\Routes\user.php:17
+Stack trace:
+#0 C:\xampp\htdocs\api\src\Routes\user.php(17): strtoupper(Array)
+#1 C:\xampp\htdocs\api\public\index.php(22): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\api\src\Routes\user.php on line 17
+[27-Sep-2021 20:07:44 America/Bogota] PHP Fatal error:  Uncaught TypeError: strtoupper(): Argument #1 ($string) must be of type string, array given in C:\xampp\htdocs\api\src\Routes\user.php:17
+Stack trace:
+#0 C:\xampp\htdocs\api\src\Routes\user.php(17): strtoupper(Array)
+#1 C:\xampp\htdocs\api\public\index.php(22): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\api\src\Routes\user.php on line 17
+[28-Sep-2021 15:06:14 America/Bogota] conexion exitosa
+[28-Sep-2021 15:07:26 America/Bogota] Token invalido o expiro
+[28-Sep-2021 15:16:07 America/Bogota] conexion exitosa
+[28-Sep-2021 15:17:50 America/Bogota] conexion exitosa
+[28-Sep-2021 15:18:57 America/Bogota] conexion exitosa
+[28-Sep-2021 15:18:57 America/Bogota] conexion exitosa
+[28-Sep-2021 15:18:57 America/Bogota] conexion exitosa
+[28-Sep-2021 15:19:02 America/Bogota] conexion exitosa
+[28-Sep-2021 15:28:31 America/Bogota] conexion exitosa
+[28-Sep-2021 15:28:55 America/Bogota] conexion exitosa
+[28-Sep-2021 15:29:02 America/Bogota] conexion exitosa
+[30-Sep-2021 20:12:01 America/Bogota] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\api\src\Config\Security.php on line 56
+[30-Sep-2021 20:12:01 America/Bogota] Token invalido o expiro
+[30-Sep-2021 20:12:08 America/Bogota] conexion exitosa
+[30-Sep-2021 20:12:43 America/Bogota] conexion exitosa
+[30-Sep-2021 20:12:43 America/Bogota] La contraseña es incorrecta
+[30-Sep-2021 20:12:45 America/Bogota] conexion exitosa
+[30-Sep-2021 20:12:45 America/Bogota] La contraseña es incorrecta
+[30-Sep-2021 20:12:47 America/Bogota] conexion exitosa
+[30-Sep-2021 20:12:47 America/Bogota] La contraseña es incorrecta
+[30-Sep-2021 20:12:51 America/Bogota] conexion exitosa
+[30-Sep-2021 20:13:13 America/Bogota] conexion exitosa
+[30-Sep-2021 20:13:45 America/Bogota] conexion exitosa
+[30-Sep-2021 20:13:45 America/Bogota] conexion exitosa
+[30-Sep-2021 20:13:52 America/Bogota] conexion exitosa
+[30-Sep-2021 20:13:52 America/Bogota] La contraseña es incorrecta
+[30-Sep-2021 20:13:59 America/Bogota] conexion exitosa
+[30-Sep-2021 20:14:53 America/Bogota] conexion exitosa
+[30-Sep-2021 20:14:54 America/Bogota] La contraseña es incorrecta
+[30-Sep-2021 20:14:59 America/Bogota] conexion exitosa
+[30-Sep-2021 20:14:59 America/Bogota] conexion exitosa
+[30-Sep-2021 20:28:47 America/Bogota] conexion exitosa
+[30-Sep-2021 20:29:04 America/Bogota] conexion exitosa
+[30-Sep-2021 20:29:09 America/Bogota] conexion exitosa
+[01-Oct-2021 07:21:21 America/Bogota] Token invalido o expiro
+[01-Oct-2021 07:21:30 America/Bogota] conexion exitosa
+[01-Oct-2021 07:21:59 America/Bogota] conexion exitosa
+[01-Oct-2021 07:21:59 America/Bogota] La contraseña es incorrecta
+[01-Oct-2021 07:22:12 America/Bogota] conexion exitosa
+[01-Oct-2021 07:22:12 America/Bogota] conexion exitosa
+[01-Oct-2021 07:22:29 America/Bogota] conexion exitosa
+[01-Oct-2021 07:22:29 America/Bogota] La contraseña es incorrecta
+[01-Oct-2021 07:22:39 America/Bogota] conexion exitosa
+[01-Oct-2021 07:26:05 America/Bogota] conexion exitosa
+[01-Oct-2021 07:26:49 America/Bogota] conexion exitosa
+[01-Oct-2021 07:26:49 America/Bogota] conexion exitosa
+[01-Oct-2021 07:26:49 America/Bogota] conexion exitosa
+[01-Oct-2021 07:26:57 America/Bogota] conexion exitosa
+[01-Oct-2021 07:27:33 America/Bogota] Token invalido o expiro
+[01-Oct-2021 07:28:00 America/Bogota] conexion exitosa
+[01-Oct-2021 07:28:09 America/Bogota] conexion exitosa
