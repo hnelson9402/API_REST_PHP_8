@@ -99,30 +99,30 @@ class UserController {
        }
     }   
 
-     /***************************************************Actualizar contraseña de usuario*********************************************/
-     final public function patchPassword(string $endPoint)
-     {        
-         if ($this->method == 'patch' && $this->route == $endPoint){
-             Security::validateTokenJwt($this->headers,Security::secretKey());
- 
-             $jwtUserData = Security::getDataJwt();                  
- 
-             if (empty($this->data['oldPassword']) || empty($this->data['newPassword']) || empty($this->data['confirmNewPassword'])) {
-                 echo json_encode(ResponseHttp::status400('Todos los campos son requeridos'));
-             } else if (!UserModel::validateUserPassword($jwtUserData['IDToken'],$this->data['oldPassword'])) {
-                 echo json_encode(ResponseHttp::status400('La contraseña antigua no coincide'));
-             } else if (strlen($this->data['newPassword']) < 8 || strlen($this->data['confirmNewPassword']) < 8 ) {
-                 echo json_encode(ResponseHttp::status400('La contraseña debe tener un minimo de 8 caracteres'));
-             }else if ($this->data['newPassword'] !== $this->data['confirmNewPassword']){
-                 echo json_encode(ResponseHttp::status400('Las contraseñas no coinciden'));
-             } else {
-                 UserModel::setIDToken($jwtUserData['IDToken']);
-                 UserModel::setPassword($this->data['newPassword']); 
-                 echo json_encode(UserModel::patchPassword());
-             } 
-             exit;
-         }        
-     } 
+    /***************************************************Actualizar contraseña de usuario*********************************************/
+    final public function patchPassword(string $endPoint)
+    {        
+        if ($this->method == 'patch' && $this->route == $endPoint){
+            Security::validateTokenJwt($this->headers,Security::secretKey());
+
+            $jwtUserData = Security::getDataJwt();                  
+
+            if (empty($this->data['oldPassword']) || empty($this->data['newPassword']) || empty($this->data['confirmNewPassword'])) {
+                echo json_encode(ResponseHttp::status400('Todos los campos son requeridos'));
+            } else if (!UserModel::validateUserPassword($jwtUserData['IDToken'],$this->data['oldPassword'])) {
+                echo json_encode(ResponseHttp::status400('La contraseña antigua no coincide'));
+            } else if (strlen($this->data['newPassword']) < 8 || strlen($this->data['confirmNewPassword']) < 8 ) {
+                echo json_encode(ResponseHttp::status400('La contraseña debe tener un minimo de 8 caracteres'));
+            }else if ($this->data['newPassword'] !== $this->data['confirmNewPassword']){
+                echo json_encode(ResponseHttp::status400('Las contraseñas no coinciden'));
+            } else {
+                UserModel::setIDToken($jwtUserData['IDToken']);
+                UserModel::setPassword($this->data['newPassword']); 
+                echo json_encode(UserModel::patchPassword());
+            } 
+            exit;
+        }        
+    } 
      
     /****************************************Eliminar usuario******************************/
     final public function deleteUser(string $endPoint)

@@ -3,7 +3,6 @@
 namespace App\DB;
 
 use App\Config\ResponseHttp;
-use PDO;
 
 require __DIR__ . '/dataDB.php';
 
@@ -24,8 +23,8 @@ class ConnectionDB {
     {
         try {
             $opt = [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC];
-            $dsn = new PDO(self::$host,self::$user,self::$password,$opt);
-            $dsn->setAttribute(\PDO::ATTR_ERRMODE, \pdo::ERRMODE_EXCEPTION);
+            $dsn = new \PDO(self::$host,self::$user,self::$password,$opt);
+            $dsn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             error_log('conexion exitosa');
             return $dsn;
         } catch (\PDOException $p) {

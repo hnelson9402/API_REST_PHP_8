@@ -55,17 +55,17 @@ class UserModel extends ConnectionDB {
                 ':IDToken' => $IDToken
             ]);
 
-           if ($query->rowCount() == 0) {
-               die(json_encode(ResponseHttp::status500()));
-           } else {
-               $res = $query->fetch(\PDO::FETCH_ASSOC);
+            if ($query->rowCount() == 0) {
+                die(json_encode(ResponseHttp::status500()));
+            } else {
+                $res = $query->fetch(\PDO::FETCH_ASSOC);
 
-               if (Security::validatePassword($oldPassword,$res['password'])){
-                   return true;
-               } else {
-                   return false;
-               }               
-           }                     
+                if (Security::validatePassword($oldPassword,$res['password'])){
+                    return true;
+                } else {
+                    return false;
+                }               
+            }                     
         } catch (\PDOException $e) {
             error_log('UserModel::validateUserPassword -> ' . $e);            
             die(json_encode(ResponseHttp::status500()));
@@ -75,73 +75,73 @@ class UserModel extends ConnectionDB {
     /*********************************************Login******************************************/
     final public static function login()
     {
-       try {
-           $con = self::getConnection()->prepare("SELECT * FROM usuario WHERE correo = :correo ");
-           $con->execute([
-               ':correo' => self::getEmail()
-           ]);
+        try {
+            $con = self::getConnection()->prepare("SELECT * FROM usuario WHERE correo = :correo ");
+            $con->execute([
+                ':correo' => self::getEmail()
+            ]);
 
-           if ($con->rowCount() === 0) {
-               return ResponseHttp::status400('El usuario o contraseña son incorrectos');
-           } else {
-               foreach ($con as $res) {
-                   if (Security::validatePassword(self::getPassword() , $res['password'])) {
-                           $payload = ['IDToken' => $res['IDToken']];
-                           $token = Security::createTokenJwt(Security::secretKey(),$payload);
+            if ($con->rowCount() === 0) {
+                return ResponseHttp::status400('El usuario o contraseña son incorrectos');
+            } else {
+                foreach ($con as $res) {
+                    if (Security::validatePassword(self::getPassword() , $res['password'])) {
+                            $payload = ['IDToken' => $res['IDToken']];
+                            $token = Security::createTokenJwt(Security::secretKey(),$payload);
 
-                           $data = [
-                               'name'  => $res['nombre'],
-                               'rol'   => $res['rol'],
-                               'token' => $token
-                           ];
-                           return ResponseHttp::status200($data);
-                           exit;
-                   } else {
-                      return ResponseHttp::status400('El usuario o contraseña son incorrectos');
-                   }
-               }
-           }
-       } catch (\PDOException $e) {
-           error_log("UserModel::Login -> " .$e);
-           die(json_encode(ResponseHttp::status500()));           
-       }
+                            $data = [
+                                'name'  => $res['nombre'],
+                                'rol'   => $res['rol'],
+                                'token' => $token
+                            ];
+                            return ResponseHttp::status200($data);
+                            exit;
+                    } else {
+                        return ResponseHttp::status400('El usuario o contraseña son incorrectos');
+                    }
+                }
+            }
+        } catch (\PDOException $e) {
+            error_log("UserModel::Login -> " .$e);
+            die(json_encode(ResponseHttp::status500()));           
+        }
     }
 
     /**************************Consultar todos los usuarios***************************/
     final public static function getAll()
     {
-       try {
-           $con = self::getConnection();
-           $query = $con->prepare("SELECT * FROM usuario");
-           $query->execute();
-           $rs['data'] = $query->fetchAll(\PDO::FETCH_ASSOC);
-           return $rs;
-       } catch (\PDOException $e) {
-           error_log("UserModel::getAll -> ".$e);
-           die(json_encode(ResponseHttp::status500('No se pueden obtener los datos')));
-       }
+        try {
+            $con = self::getConnection();
+            $query = $con->prepare("SELECT * FROM usuario");
+            $query->execute();
+            $rs['data'] = $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $rs;
+        } catch (\PDOException $e) {
+            error_log("UserModel::getAll -> ".$e);
+            die(json_encode(ResponseHttp::status500('No se pueden obtener los datos')));
+        }
     }
 
     /**************************Consultar un usuario por DNI**************************************/
     final public static function getUser()
     {
-       try {
-           $con = self::getConnection();
-           $query = $con->prepare("SELECT * FROM usuario WHERE dni = :dni");
-           $query->execute([
-               ':dni' => self::getDni()
-           ]);
+        try {
+            $con = self::getConnection();
+            $query = $con->prepare("SELECT * FROM usuario WHERE dni = :dni");
+            $query->execute([
+                ':dni' => self::getDni()
+            ]);
 
-           if ($query->rowCount() == 0) {
-               return ResponseHttp::status400('El DNI ingresado no esta registrado');
-           } else {
-                $rs['data'] = $query->fetchAll(\PDO::FETCH_ASSOC);
-                return $rs;
-           }          
-       } catch (\PDOException $e) {
-           error_log("UserModel::getUser -> ".$e);
-           die(json_encode(ResponseHttp::status500('No se pueden obtener los datos del usuario')));
-       }
+            if ($query->rowCount() == 0) {
+                return ResponseHttp::status400('El DNI ingresado no esta registrado');
+            } else {
+                    $rs['data'] = $query->fetchAll(\PDO::FETCH_ASSOC);
+                    return $rs;
+            }          
+        } catch (\PDOException $e) {
+            error_log("UserModel::getUser -> ".$e);
+            die(json_encode(ResponseHttp::status500('No se pueden obtener los datos del usuario')));
+        }
     }
 
     /*******************************************Registrar usuario************************************************/
@@ -181,26 +181,26 @@ class UserModel extends ConnectionDB {
         }
     }
 
-     /******************************Actualizar la contraseña de usuario********************************/
-     final public static function patchPassword()
-     {
-         try {
-             $con = self::getConnection();
-             $query = $con->prepare("UPDATE usuario SET password = :password WHERE IDToken = :IDToken");           
-             $query->execute([
-                 ':password' => Security::createPassword(self::getPassword()),
-                 ':IDToken'  => self::getIDToken()
-             ]);
-             if ($query->rowCount() > 0) {
-                return ResponseHttp::status200('Contraseña actualizado exitosamente');
-             } else {
-                return ResponseHttp::status500('Error al actualizar la contraseña del usuario');
-             }
-         } catch (\PDOException $e) {
-             error_log("UserModel::patchPassword -> " . $e);
-             die(json_encode(ResponseHttp::status500()));
-         }
-     }
+    /******************************Actualizar la contraseña de usuario********************************/
+    final public static function patchPassword()
+    {
+        try {
+            $con = self::getConnection();
+            $query = $con->prepare("UPDATE usuario SET password = :password WHERE IDToken = :IDToken");           
+            $query->execute([
+                ':password' => Security::createPassword(self::getPassword()),
+                ':IDToken'  => self::getIDToken()
+            ]);
+            if ($query->rowCount() > 0) {
+            return ResponseHttp::status200('Contraseña actualizado exitosamente');
+            } else {
+            return ResponseHttp::status500('Error al actualizar la contraseña del usuario');
+            }
+        } catch (\PDOException $e) {
+            error_log("UserModel::patchPassword -> " . $e);
+            die(json_encode(ResponseHttp::status500()));
+        }
+    }
 
     /*******************************Eliminar usuario**************************/
     final public static function deleteUser()
