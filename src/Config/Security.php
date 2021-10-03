@@ -46,13 +46,13 @@ class Security {
 
     final public static function validateTokenJwt(array $token , string $key)
     {
-        if (!isset($token['authorization'])) {
+        if (!isset($token['Authorization'])) {
             die(json_encode(ResponseHttp::status400('El token de acceso en requerido')));            
             exit;
         }
 
         try {
-            $jwt = explode(" " ,$token['authorization']);
+            $jwt = explode(" " ,$token['Authorization']);
             $data = JWT::decode($jwt[1],$key,array('HS256'));
             self::$jwt_data = $data;
             return $data;
