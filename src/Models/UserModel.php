@@ -20,7 +20,7 @@ class UserModel extends ConnectionDB {
 
     public function __construct(array $data)
     {
-        self::$nombre = $data['name'];
+        self::$nombre   = $data['name'];
         self::$dni      = $data['dni'];
         self::$correo   = $data['email'];
         self::$rol      = $data['rol'];        

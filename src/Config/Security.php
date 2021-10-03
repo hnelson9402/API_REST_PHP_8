@@ -24,24 +24,24 @@ class Security {
 
     final public static function validatePassword(string $pw , string $pwh)
     {
-       if (password_verify($pw,$pwh)) {
-           return true;
-       } else {
-           error_log('La contraseña es incorrecta');
-           return false;
-       }
+        if (password_verify($pw,$pwh)) {
+            return true;
+        } else {
+            error_log('La contraseña es incorrecta');
+            return false;
+        }
        
     }
 
     final public static function createTokenJwt(string $key , array $data)
     {
-         $payload = array (
-             "iat" => time(),
-             "exp" => time() + (60*60*6),
-             "data" => $data
-         );
-         $jwt = JWT::encode($payload,$key);
-         return $jwt;
+        $payload = array (
+            "iat" => time(),
+            "exp" => time() + (60*60*6),
+            "data" => $data
+        );
+        $jwt = JWT::encode($payload,$key);
+        return $jwt;
     }
 
     final public static function validateTokenJwt(array $token , string $key)
