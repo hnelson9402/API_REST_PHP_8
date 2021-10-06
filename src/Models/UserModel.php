@@ -15,8 +15,7 @@ class UserModel extends ConnectionDB {
     private static string $correo;
     private static int    $rol;    
     private static string $password;
-    private static string $IDToken;
-    private static string $fecha;
+    private static string $IDToken;    
 
     public function __construct(array $data)
     {
@@ -33,8 +32,7 @@ class UserModel extends ConnectionDB {
     final public static function getEmail(){    return self::$correo;}
     final public static function getRol(){      return self::$rol;}     
     final public static function getPassword(){ return self::$password;}
-    final public static function getIDToken(){  return self::$IDToken;}
-    final public static function getDate(){     return self::$fecha;} 
+    final public static function getIDToken(){  return self::$IDToken;}    
     
     /**********************************Metodos Setter***********************************/
     final public static function setName(string $nombre) {      self::$nombre = $nombre;}
@@ -42,8 +40,7 @@ class UserModel extends ConnectionDB {
     final public static function setEmail(string $correo){      self::$correo = $correo;}
     final public static function setRol(string $rol){           self::$rol = $rol;}      
     final public static function setPassword(string $password){ self::$password = $password;}
-    final public static function setIDToken(string $IDToken){   self::$IDToken = $IDToken;}
-    final public static function setDate(string $fecha){        self::$fecha = $fecha;}   
+    final public static function setIDToken(string $IDToken){   self::$IDToken = $IDToken;}    
     
     /**********************Validar si la contaseña antigua es correcta**************************/
     final public static function validateUserPassword(string $IDToken,string $oldPassword)
@@ -152,13 +149,12 @@ class UserModel extends ConnectionDB {
         } else if (Sql::exists("SELECT correo FROM usuario WHERE correo = :correo",":correo",self::getEmail())) {
             return ResponseHttp::status400('El Correo ya esta registrado');
         } else {
-            self::setIDToken(hash('sha512',self::getDni().self::getEmail()));
-            self::setDate(date("d-m-y H:i:s"));
+            self::setIDToken(hash('sha512',self::getDni().self::getEmail()));            
 
             try {
                 $con = self::getConnection();
-                $query1 = "INSERT INTO usuario (nombre,dni,correo,rol,password,IDToken,fecha) VALUES";
-                $query2 = "(:nombre,:dni,:correo,:rol,:password,:IDToken,:fecha)";
+                $query1 = "INSERT INTO usuario (nombre,dni,correo,rol,password,IDToken) VALUES";
+                $query2 = "(:nombre,:dni,:correo,:rol,:password,:IDToken)";
                 $query = $con->prepare($query1 . $query2);
                 $query->execute([
                     ':nombre'  => self::getName(),
@@ -166,8 +162,7 @@ class UserModel extends ConnectionDB {
                     ':correo'  => self::getEmail(),
                     ':rol'     => self::getRol(),                    
                     ':password'=> Security::createPassword(self::getPassword()),
-                    ':IDToken' => self::getIDToken(),
-                    ':fecha'   => self::getDate()
+                    ':IDToken' => self::getIDToken()            
                 ]);
                 if ($query->rowCount() > 0) {
                     return ResponseHttp::status200('Usuario registrado exitosamente');

@@ -10,5 +10,5 @@ create table if not exists usuario(
 	rol int not null,	
 	password varchar(500) not null,
 	IDToken varchar(500) not null,
-	fecha varchar(17) not null
+	fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )

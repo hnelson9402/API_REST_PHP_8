@@ -16,7 +16,7 @@ class ResponseHttp {
             die(json_encode(ResponseHttp::status401('No tiene autorizacion para consumir esta API')));
         }
 
-        $list = ['http://app.test'];        
+        $list = ['http://nibiru.test'];        
 
         if (in_array($origin,$list)){
 
