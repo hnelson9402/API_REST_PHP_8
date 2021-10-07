@@ -45,3 +45,10 @@ Este **EndPoint** devuelve la siguiente información:
  "confirmNewPassword": "12345678"
 }
 ```
+>DELETE public/user/
+
+```JSON
+{
+  "IDToken":"5a2f8e6e553815d253e40fa7da9e2d4985814d7a8914d75677d2d06c6fbf9d267657106109c3f76c4e86a7b1914cfdfe7743e741700f4940f070e891530c49be"
+}
+```
