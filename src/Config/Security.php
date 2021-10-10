@@ -4,11 +4,13 @@ namespace App\Config;
 
 use Dotenv\Dotenv;
 use Firebase\JWT\JWT;
+use Bulletproof\Image;
 
 class Security {
 
-    private static $jwt_data; 
+    private static $jwt_data;//Propiedad para guardar los datos decodificados del JWT 
 
+    /************Acceder a la secret key del JWT*************/
     final public static function secretKey()
     {
         $dotenv = Dotenv::createImmutable(dirname(__DIR__,2));
@@ -16,12 +18,14 @@ class Security {
         return $_ENV['SECRET_KEY'];
     }
 
+    /********Encriptar la contraseña del usuario***********/
     final public static function createPassword(string $pw)
     {
         $pass = password_hash($pw,PASSWORD_DEFAULT);
         return $pass;
     }
 
+    /*****************Validar que las contraseñas coincidan****************/
     final public static function validatePassword(string $pw , string $pwh)
     {
         if (password_verify($pw,$pwh)) {
@@ -29,10 +33,10 @@ class Security {
         } else {
             error_log('La contraseña es incorrecta');
             return false;
-        }
-       
+        }       
     }
 
+    /************************Crear JWT***********************************/
     final public static function createTokenJwt(string $key , array $data)
     {
         $payload = array (
@@ -44,6 +48,7 @@ class Security {
         return $jwt;
     }
 
+    /*********************Validar que el JWT sea correcto********************/
     final public static function validateTokenJwt(array $token , string $key)
     {
         if (!isset($token['Authorization'])) {
@@ -63,10 +68,32 @@ class Security {
         }
     }
 
+    /***************Devolver los datos del JWT decodificados****************/
     final public static function getDataJwt()
     {
         $jwt_decoded_array = json_decode(json_encode(self::$jwt_data),true);
         return $jwt_decoded_array['data'];
         exit;
+    }
+
+    /***********Subir Imagen al servidor**************/
+    final public static function uploadImage($file,$name)
+    {
+        $file = new Image($file);
+ 
+        $file->setMime(array('png','jpg','jpeg'));//formatos admitidos
+        $file->setSize(10000,500000);//Tamaño admitidos es Bytes
+        $file->setDimension(200,200);//Dimensiones admitidas en Pixeles
+        $file->setLocation('public/Images');//Ubicación de la carpeta
+
+        if ($file[$name]) {
+            $upload = $file->upload();            
+            if ($upload) {
+                $imgUrl = UrlBase::urlBase .'/public/Images/'. $upload->getName().'.'.$upload->getMime();
+                return $imgUrl;               
+            } else {
+                die(json_encode(ResponseHttp::status400($file->getError())));               
+            }
+        }
     }
 }

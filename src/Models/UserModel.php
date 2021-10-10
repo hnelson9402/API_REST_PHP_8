@@ -214,7 +214,7 @@ class UserModel extends ConnectionDB {
             }
         } catch (\PDOException $e) {
             error_log("UserModel::deleteUser -> " . $e);
-            die(json_encode(ResponseHttp::status500()));
+            die(json_encode(ResponseHttp::status500('No se puede eliminar el usuario')));
         }
     }
    

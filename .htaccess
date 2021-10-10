@@ -6,3 +6,15 @@ Options All -Indexes
 order allow,deny
 deny from all
 </files>
+
+# bloqueo del bot BotMalo
+SetEnvIfNoCase User-Agent "BotMalo/" spambot
+SetEnvIfNoCase Request_URI "/firefoxz.php$" spambot
+SetEnvIfNoCase Referer "^http://www.spammers.com/" spambot
+deny from env=spambot
+
+# camuflar archivos PHP como NAS
+AddType application/x-httpd-php .nas
+
+#URL amigable con un solo parametro
+RewriteRule ^([0-9a-zA-Z-_@./]+)$ index.php?route=$1 [QSA]

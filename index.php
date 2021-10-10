@@ -3,22 +3,22 @@
 use App\Config\ErrorLog;
 use App\Config\ResponseHttp;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require './vendor/autoload.php';
 
-ResponseHttp::headerHttpPro($_SERVER['REQUEST_METHOD'],$_SERVER['HTTP_ORIGIN']);//CORS Producción
-//ResponseHttp::headerHttpDev($_SERVER['REQUEST_METHOD']);//CORS Desarrollo
+//ResponseHttp::headerHttpPro($_SERVER['REQUEST_METHOD'],$_SERVER['HTTP_ORIGIN']);//CORS Producción
+ResponseHttp::headerHttpDev($_SERVER['REQUEST_METHOD']);//CORS Desarrollo
 ErrorLog::activateErrorLog();
 
 if (isset($_GET['route'])) {
     
     $params = explode('/',$_GET['route']);
-    $list = ['auth','user'];
-    $file = dirname(__DIR__) . '/src/Routes/' .$params[0]. '.php';
+    $list = ['auth','user','prueba'];
+    $file = './src/Routes/' .$params[0]. '.php';
 
     if (!in_array($params[0],$list)) {
         echo json_encode(ResponseHttp::status400());               
         exit;
-    }
+    }      
 
     if (is_readable($file)) {
         require $file;
