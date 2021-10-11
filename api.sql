@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2021 a las 04:15:40
+-- Tiempo de generación: 11-10-2021 a las 19:44:31
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -33,6 +33,7 @@ CREATE TABLE `productos` (
   `description` varchar(30) NOT NULL,
   `stock` int(10) NOT NULL,
   `url` varchar(200) NOT NULL,
+  `imageName` varchar(100) NOT NULL,
   `IDtoken` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,8 +41,8 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`ID_PRODUCTOS`, `name`, `description`, `stock`, `url`, `IDtoken`) VALUES
-(1, 'hugo', 'dfdsggdfgfdgfdgfd', 1254, 'http://apiphp8.test/public/Images/61639dc4810007.51827548_eoqplkngmhfji.jpeg', 'e9a285c5ca71e80680fcb5d46bb1bd48');
+INSERT INTO `productos` (`ID_PRODUCTOS`, `name`, `description`, `stock`, `url`, `imageName`, `IDtoken`) VALUES
+(4, 'hugo', 'fgdsfgdsfgdfs', 1254, 'http://apiphp8.test/public/Images/61646f4b6070e5.71526911_mjfhqlpeikgon.jpeg', '61646f4b6070e5.71526911_mjfhqlpeikgon', 'bfe8996c52594c9b04be12e59d507f1c');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_PRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_PRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

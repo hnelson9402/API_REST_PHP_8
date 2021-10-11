@@ -26,7 +26,7 @@ class ProductController {
     {
         if ($this->method == 'post' && $endPoint == $this->route) {
             Security::validateTokenJwt($this->headers,Security::secretKey());
-           
+            
             if (empty($this->data['name']) || empty($this->data['description']) || empty($this->data['stock']) || empty($_FILES['product'])) {
                 echo json_encode(ResponseHttp::status400('Todos los campos son requeridos'));
             } else if(!preg_match(self::$validate_text,$this->data['name'])) {

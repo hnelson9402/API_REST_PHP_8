@@ -14,6 +14,7 @@ class ProductModel extends ConnectionDB{
     private static $stock;
     private static $file;
     private static string $url;
+    private static string $imageName;
     private static string $IDtoken;    
 
     public function __construct(array $data, $file)
@@ -30,6 +31,7 @@ class ProductModel extends ConnectionDB{
     final public static function getStock(){ return self::$stock;}
     final public static function getFile(){ return self::$file;}
     final public static function getUrl(){ return self::$url;}
+    final public static function getImageName(){ return self::$imageName;}
     final public static function getIDtoken(){ return self::$IDtoken;}
 
     /**********************************Metodos Setter***********************************/
@@ -37,7 +39,8 @@ class ProductModel extends ConnectionDB{
     final public static function setDescription(string $description) { self::$description = $description;}
     final public static function setStock(string $stock) { self::$stock = $stock;}
     final public static function setFile(string $file) { self::$file = $file;}
-    final public static function setUrl(string $url) { self::$url = $url;}  
+    final public static function setUrl(string $url) { self::$url = $url;} 
+    final public static function setImageName(string $imageName) { self::$imageName = $imageName;}  
     final public static function setIDtoken(string $IDtoken) { self::$IDtoken = $IDtoken;}   
 
     /*********************Registrar Producto********************/
@@ -47,16 +50,19 @@ class ProductModel extends ConnectionDB{
             return ResponseHttp::status400('El Producto ya esta registrado');
         } else {
             try {
-                self::setUrl(Security::uploadImage(self::getFile(),'product'));
+                $resImg = Security::uploadImage(self::getFile(),'product'); 
+                self::setUrl($resImg['path']);
+                self::setImageName($resImg['name']);
                 self::setIDtoken(hash('md5',self::getName().self::getUrl()));
 
                 $con = self::getConnection();
-                $query = $con->prepare('INSERT INTO productos(name,description,stock,url,IDtoken) VALUES (:name,:description,:stock,:url,:IDtoken)');
+                $query = $con->prepare('INSERT INTO productos(name,description,stock,url,imageName,IDtoken) VALUES (:name,:description,:stock,:url,:imageName,:IDtoken)');
                 $query->execute([
                     ':name'        => self::getName(),
                     ':description' => self::getDescription(),
                     ':stock'       => self::getStock(),
                     ':url'         => self::getUrl(),
+                    ':imageName'   => self::getImageName(),
                     ':IDtoken'     => self::getIDtoken()
                 ]); 
                 

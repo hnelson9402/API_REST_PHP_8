@@ -1,6 +1,6 @@
 ## AUTH
 ---
->GET public/auth/:email/:password/
+>GET auth/:email/:password/
 
 Este **EndPoint** devuelve la siguiente información:
 
@@ -18,11 +18,11 @@ Este **EndPoint** devuelve la siguiente información:
 
 ## USUARIO
 ---
->GET public/user/
+>GET user/
 
->GET public/user/:dni/
+>GET user/:dni/
 
->POST public/user/
+>POST user/
 
 **Nota:** Los siguientes datos son necesarios para registrar un nuevo usuario.
 
@@ -36,7 +36,7 @@ Este **EndPoint** devuelve la siguiente información:
   "confirmPassword":"12345678"
 }
 ```
->PATCH public/user/password/
+>PATCH user/password/
 
 ```JSON
 {
@@ -45,10 +45,37 @@ Este **EndPoint** devuelve la siguiente información:
  "confirmNewPassword": "12345678"
 }
 ```
->DELETE public/user/
+>DELETE user/
 
 ```JSON
 {
   "IDToken":"5a2f8e6e553815d253e40fa7da9e2d4985814d7a8914d75677d2d06c6fbf9d267657106109c3f76c4e86a7b1914cfdfe7743e741700f4940f070e891530c49be"
 }
+```
+## PRODUCTO
+
+>POST product/
+
+**Nota:** Para registrar el producto, debe enviar los datos atraves de la clase **FormData** de Javascript 
+
+```html
+<form enctype="multipart/form-data" id="saveProduct">
+  <input type="text" name="name"/>
+  <input type="text" name="description"/>
+  <input type="number" name="stock"/>  
+  <input type="file" name="product"/>
+  <input type="submit" value="upload"/>
+</form>
+```
+
+```javascript
+let body = new FormData(document.getElementById("saveProduct"));
+
+fetch('Ruta de la API',{
+      headers: {
+        Authorization: `Bearer Dirección del token`
+      },
+      method: 'POST',
+      body: body
+});
 ```

@@ -90,7 +90,11 @@ class Security {
             $upload = $file->upload();            
             if ($upload) {
                 $imgUrl = UrlBase::urlBase .'/public/Images/'. $upload->getName().'.'.$upload->getMime();
-                return $imgUrl;               
+                $data = [
+                    'path' => $imgUrl,
+                    'name' => $upload->getName()
+                ];
+                return $data;               
             } else {
                 die(json_encode(ResponseHttp::status400($file->getError())));               
             }
