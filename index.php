@@ -12,7 +12,7 @@ ErrorLog::activateErrorLog();
 if (isset($_GET['route'])) {
     
     $params = explode('/',$_GET['route']);
-    $list = ['auth','user','prueba'];
+    $list = ['auth','user','product'];
     $file = './src/Routes/' .$params[0]. '.php';
 
     if (!in_array($params[0],$list)) {

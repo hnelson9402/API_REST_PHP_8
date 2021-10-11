@@ -1,6 +1,0 @@
-[10-Oct-2021 14:50:41 America/Bogota] conexion exitosa
-[10-Oct-2021 14:50:41 America/Bogota] La contraseña es incorrecta
-[10-Oct-2021 14:51:02 America/Bogota] conexion exitosa
-[10-Oct-2021 14:56:38 America/Bogota] conexion exitosa
-[10-Oct-2021 15:58:12 America/Bogota] conexion exitosa
-[10-Oct-2021 15:59:33 America/Bogota] PHP Warning:  Array to string conversion in C:\xampp\htdocs\api-php-8\src\Config\Security.php on line 95
