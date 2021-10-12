@@ -102,7 +102,7 @@ class UserController {
     /***************************************************Actualizar contraseña de usuario*********************************************/
     final public function patchPassword(string $endPoint)
     {        
-        if ($this->method == 'patch' && $this->route == $endPoint){
+        if ($this->method == 'patch' && $this->route == $endPoint){            
             Security::validateTokenJwt($this->headers,Security::secretKey());
 
             $jwtUserData = Security::getDataJwt();                  

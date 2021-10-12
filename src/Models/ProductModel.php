@@ -43,6 +43,21 @@ class ProductModel extends ConnectionDB{
     final public static function setImageName(string $imageName) { self::$imageName = $imageName;}  
     final public static function setIDtoken(string $IDtoken) { self::$IDtoken = $IDtoken;}   
 
+    /**************************Consultar todos los productos***************************/
+    final public static function getAll()
+    {
+        try {
+            $con = self::getConnection();
+            $query = $con->prepare("SELECT * FROM productos");
+            $query->execute();
+            $rs['data'] = $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $rs;
+        } catch (\PDOException $e) {
+            error_log("ProductModel::getAll -> ".$e);
+            die(json_encode(ResponseHttp::status500('No se pueden obtener los datos')));
+        }
+    }
+    
     /*********************Registrar Producto********************/
     final public static function postSave() 
     {

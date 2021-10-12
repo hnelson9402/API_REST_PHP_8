@@ -54,6 +54,8 @@ Este **EndPoint** devuelve la siguiente información:
 ```
 ## PRODUCTO
 
+>GET product/
+
 >POST product/
 
 **Nota:** Para registrar el producto, debe enviar los datos atraves de la clase **FormData** de Javascript 

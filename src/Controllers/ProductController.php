@@ -21,6 +21,16 @@ class ProductController {
     )
     {}  
 
+    /**********************Consultar todos los productos*********************/
+    final public function getAll(string $endPoint)
+    {
+        if ($this->method == 'get' && $endPoint == $this->route) {
+            Security::validateTokenJwt($this->headers,Security::secretKey());
+            echo json_encode(ProductModel::getAll());
+            exit;
+        }    
+    }
+
     /************************************Registrar Producto***********************************************/
     final public function postSave(string $endPoint)
     {

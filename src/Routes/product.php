@@ -13,6 +13,7 @@ $headers = getallheaders();
 $app = new ProductController($method,$route,$params,$data,$headers);
 
 /***********************Rutas*********************/
+$app->getAll('product/');
 $app->postSave('product/');
 
 /****************Error 404*****************/
