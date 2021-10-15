@@ -49,15 +49,14 @@ class Security {
     }
 
     /*********************Validar que el JWT sea correcto********************/
-    final public static function validateTokenJwt(array $token , string $key)
+    final public static function validateTokenJwt(string $key)
     {
-        if (!isset($token['Authorization'])) {
+        if (!isset(getallheaders()['Authorization'])) {
             die(json_encode(ResponseHttp::status400('El token de acceso en requerido')));            
             exit;
         }
-
         try {
-            $jwt = explode(" " ,$token['Authorization']);
+            $jwt = explode(" " ,getallheaders()['Authorization']);
             $data = JWT::decode($jwt[1],$key,array('HS256'));
             self::$jwt_data = $data;
             return $data;

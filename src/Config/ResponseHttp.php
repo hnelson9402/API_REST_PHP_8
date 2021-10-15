@@ -48,7 +48,7 @@ class ResponseHttp {
         header('Access-Control-Allow-Methods: GET,PUT,POST,PATCH,DELETE');
         header("Allow: GET, POST, OPTIONS, PUT, PATCH , DELETE");
         header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Authorization"); 
-        header('Content-Type: application/json'); 
+        //header('Content-Type: application/json'); 
     }
 
     public static function status200($res)
@@ -97,5 +97,5 @@ class ResponseHttp {
         self::$message['status'] = 'error';
         self::$message['message'] = $res;
         return self::$message;
-    }
+    }   
 }
