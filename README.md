@@ -81,3 +81,11 @@ fetch('Ruta de la API',{
       body: body
 });
 ```
+>DELETE product/
+
+```json
+{
+ "name":"6169ecc61b4372.59789016_qkgpfoinmjehl.jpeg",
+ "IDtoken":"1b24414d2c97317eac3fb282d0f8178f"
+}
+```

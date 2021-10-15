@@ -12,6 +12,7 @@ $app = new ProductController();
 /***********************Rutas*********************/
 $app->getAll('product/');
 $app->postSave('product/');
+$app->delete('product/');
 
 /****************Error 404*****************/
 echo json_encode(ResponseHttp::status404());

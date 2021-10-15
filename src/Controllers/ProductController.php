@@ -39,4 +39,21 @@ class ProductController extends BaseController{
             exit;
         }
     }
+
+    /************************************Borrar Producto***********************************************/
+    final public function delete(string $endPoint)
+    {
+        if ($this->getMethod() == 'delete' && $endPoint == $this->getRoute()) {
+            Security::validateTokenJwt(Security::secretKey());
+            
+            if (empty($this->getParam()['name']) || empty($this->getParam()['IDtoken'])) {
+                echo json_encode(ResponseHttp::status400('Todos los campos son requeridos'));
+            } else {
+                ProductModel::setImageName($this->getParam()['name']);
+                ProductModel::setIDtoken($this->getParam()['IDtoken']);
+                echo json_encode(ProductModel::delete());
+            }
+            exit;
+        }
+    }
 }

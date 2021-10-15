@@ -92,4 +92,31 @@ class ProductModel extends ConnectionDB{
             }  
         }    
     }
+
+    /*******************************Eliminar producto**************************/
+    final public static function delete()
+    {
+        try {
+            $con   = self::getConnection();
+            $query = $con->prepare("DELETE FROM productos WHERE IDToken = :IDToken");
+            $query->execute([
+                ':IDToken' => self::getIDToken()
+            ]);
+
+            if ($query->rowCount() > 0) {
+                $name = self::getImageName();
+                $imgLocal = unlink(__DIR__ . "/../../public/Images/$name");
+                if ($imgLocal) {
+                    return ResponseHttp::status200('Producto eliminado exitosamente');
+                } else {
+                    return ResponseHttp::status500('No se puede eliminar la imagen local');
+                }                
+            } else {
+                return ResponseHttp::status500('No se puede eliminar el producto');
+            }
+        } catch (\PDOException $e) {
+            error_log("ProductModel::delete -> " . $e);
+            die(json_encode(ResponseHttp::status500('No se puede eliminar el producto')));
+        }
+    }
 }

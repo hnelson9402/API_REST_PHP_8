@@ -16,7 +16,7 @@ if (isset($_GET['route'])) {
     $file = './src/Routes/' .$params[0]. '.php';
 
     if (!in_array($params[0],$list)) {
-        echo json_encode(ResponseHttp::status400());               
+        echo json_encode(ResponseHttp::status400());                
         exit;
     }      
 

@@ -62,7 +62,7 @@ class Security {
             return $data;
             exit;
         } catch (\Exception $e) {
-            error_log('Token invalido o expiro');
+            error_log('Token invalido o expiro'. $e);
             die(json_encode(ResponseHttp::status401('Token invalido o expirado')));
         }
     }
@@ -91,7 +91,7 @@ class Security {
                 $imgUrl = UrlBase::urlBase .'/public/Images/'. $upload->getName().'.'.$upload->getMime();
                 $data = [
                     'path' => $imgUrl,
-                    'name' => $upload->getName()
+                    'name' => $upload->getName() .'.'. $upload->getMime()
                 ];
                 return $data;               
             } else {
