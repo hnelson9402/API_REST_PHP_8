@@ -74,7 +74,7 @@ class UserController extends BaseController{
             echo json_encode(ResponseHttp::status400('Formato de correo incorrecto'));
         } else if (!preg_match(self::$validate_rol, $this->getParam()['rol'])) {
             echo json_encode(ResponseHttp::status400('Rol invalido'));
-        } else if (strlen($this->getParam()['password']) < 8 || strlen($this->getParam()['confirmPassword']) < 8 ) {
+        } else if (strlen($this->getParam()['password']) < 8) {
             echo json_encode(ResponseHttp::status400('La contraseña debe tener un minimo de 8 caracteres'));
         } else if ($this->getParam()['password'] !== $this->getParam()['confirmPassword']) {
             echo json_encode(ResponseHttp::status400('Las contraseñas no coinciden'));
