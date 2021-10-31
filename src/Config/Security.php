@@ -99,4 +99,28 @@ class Security {
             }
         }
     }
+
+    /***********************Subir fotos en base64***************************/
+    final public static function uploadImageBase64(array $data, string $name) 
+    {        
+        $token = bin2hex(random_bytes(32).time()); 
+        $name_img = $token . '.png';
+        $route = dirname(__DIR__, 2) . "/public/Images/{$name_img}";        
+    
+        //Decodificamos la imagen
+        $img_decoded = base64_decode(
+            preg_replace('/^[^,]*,/', '', $data[$name])
+        );
+    
+        $v = file_put_contents($route,$img_decoded);
+    
+        //Validamos si se subio la imagen
+        if ($v) {
+            return UrlBase::urlBase . "/public/Images/{$name_img}";
+        } else {
+            unlink($route);
+            die(json_encode(ResponseHttp::status500('No se puede subir la imagen')));
+        }   
+        
+    }
 }

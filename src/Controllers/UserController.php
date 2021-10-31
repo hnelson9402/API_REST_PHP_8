@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Config\ResponseHttp;
 use App\Config\Security;
 use App\Models\UserModel;
+use Rakit\Validation\Validator;
 
 class UserController extends BaseController{   
     
@@ -61,27 +62,27 @@ class UserController extends BaseController{
     final public function postSave(string $endPoint)
     {
        if ($this->getMethod() == 'post' && $endPoint == $this->getRoute()) {
-        Security::validateTokenJwt(Security::secretKey()); 
+       // Security::validateTokenJwt(Security::secretKey()); 
 
-        if (empty($this->getParam()['name']) || empty($this->getParam()['dni']) || empty($this->getParam()['email']) || 
-        empty($this->getParam()['rol']) || empty($this->getParam()['password']) || empty($this->getParam()['confirmPassword'])) {
-            echo json_encode(ResponseHttp::status400('Todos los campos son requeridos'));
-        } else if (!preg_match(self::$validate_text, $this->getParam()['name'])) {
-            echo json_encode(ResponseHttp::status400('El campo nombre solo admite texto'));
-        } else if (!preg_match(self::$validate_number, $this->getParam()['dni'])) {
-            echo json_encode(ResponseHttp::status400('El campo Dni solo admite números'));
-        } else if (!filter_var($this->getParam()['email'] , FILTER_VALIDATE_EMAIL)) {
-            echo json_encode(ResponseHttp::status400('Formato de correo incorrecto'));
-        } else if (!preg_match(self::$validate_rol, $this->getParam()['rol'])) {
-            echo json_encode(ResponseHttp::status400('Rol invalido'));
-        } else if (strlen($this->getParam()['password']) < 8) {
-            echo json_encode(ResponseHttp::status400('La contraseña debe tener un minimo de 8 caracteres'));
-        } else if ($this->getParam()['password'] !== $this->getParam()['confirmPassword']) {
-            echo json_encode(ResponseHttp::status400('Las contraseñas no coinciden'));
+        $validator = new Validator;
+        
+        $validation = $validator->validate($this->getParam(), [
+            'name'               => 'required|regex:/^[a-zA-Z ]+$/',
+            'dni'                => 'required|numeric',
+            'email'              => 'required|email',            
+            'rol'                => 'required|numeric|min:1|regex:/^[12]+$/',
+            'password'           => 'required|min:8',
+            'confirmPassword'    => 'required|same:password'   
+        ]);      
+
+        if ($validation->fails()) {            
+            $errors = $validation->errors();            	
+            echo json_encode(ResponseHttp::status400($errors->all()[0]));
         } else {            
-             new UserModel($this->getParam()); 
-             echo json_encode(UserModel::postSave());               
-        }                
+            new UserModel($this->getParam());
+            echo json_encode(UserModel::postSave());
+        }              
+                          
         exit;
        }
     }   
